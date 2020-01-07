@@ -1,0 +1,303 @@
+<?php
+
+// PENSER A METTTRE EN CONSTANTES LES COORDONNES
+
+
+const CONVERTER_LETTER=["A"=>"0","B"=>"1","C"=>"2","D"=>"3","E"=>"4","F"=>"5","G"=>"6","H"=>"7","I"=>"8","J"=>"9"];
+const CONVERTER_NUMBER=["1"=>"0","2"=>"1","3"=>"2","4"=>"3","5"=>"4","6"=>"5","7"=>"6","8"=>"7","9"=>"8","10"=>"9"];
+
+//------------------------
+
+// display the boards
+function display_board($board1, $board2){
+    $letter = "A";
+    echo "  1 2 3 4 5 6 7 8 9 10    |      1 2 3 4 5 6 7 8 9 10\n";
+    foreach ($board1 as $key => $value){
+        echo $letter . " ";
+
+        foreach ($value as $value2){
+            print "\e[1;37;44m" . $value2. " \e[0m";     
+        }
+        echo "    |    ";
+        echo $letter . " ";
+        foreach ($board2[$key] as $value2){
+            print "\e[1;37;44m" .$value2 . " \e[0m";
+        }
+        $letter++;
+        echo "\n";
+    }    
+}
+
+// length of the boat
+
+function lenght_boat($coordonate_Y_start,$coordonate_X_start,$coordonate_Y_end,$coordonate_X_end,&$list_boat){
+    //check the lenght of the boat
+    if ($coordonate_X_start<$coordonate_X_end && $coordonate_Y_start==$coordonate_Y_end){
+        $lenght_boat=$coordonate_X_end-$coordonate_X_start+1;
+
+        $list_boat = array_diff($list_boat, [$lenght_boat]);
+    }
+    else if ($coordonate_Y_start<$coordonate_Y_end && $coordonate_X_start==$coordonate_X_end){
+        $lenght_boat=$coordonate_Y_end-$coordonate_Y_start+1;        
+        
+        $list_boat = array_diff($list_boat, [$lenght_boat]);
+    }
+    
+    else{
+        print "Les bateaux de 1 n'existent pas\n";
+    }
+    if ($lenght_boat>6){
+        print "Ne place pas un bateau de plus de 6\n";
+        return "\n";
+    }
+    foreach ($list_boat as $value){
+        print $value . "\n";
+    }
+}
+// place ships
+
+function place_ship(&$board1,&$board2, &$player_ship){
+    $list_boat=[2,3,4,5,6];
+    $is_right=false;
+    $index = 0;
+    while(!$is_right){
+        if(count($list_boat) == 0){
+            break;
+        }
+        echo "Please insert the coordinates(ex: A1-A2) \n";
+        $place=trim(fgets(STDIN));
+        $coordonate_Y_start=CONVERTER_LETTER[$place[0]];
+        $coordonate_X_start=CONVERTER_NUMBER[$place[1]];
+        $coordonate_Y_end=CONVERTER_LETTER[$place[3]];
+        $coordonate_X_end=CONVERTER_NUMBER[$place[4]];
+        if($coordonate_X_start!=$coordonate_X_end && $coordonate_Y_start!=$coordonate_Y_end){
+            print "Pas de bateau en diagonale \n";   
+            continue;
+        }
+        lenght_boat($coordonate_Y_start,$coordonate_X_start,$coordonate_Y_end,$coordonate_X_end,$list_boat);
+        if ($coordonate_X_start<=$coordonate_X_end && $coordonate_Y_start==$coordonate_Y_end){
+            while ($coordonate_X_start<=$coordonate_X_end){
+                $board1[$coordonate_Y_start][$coordonate_X_start]="0";
+                $player_ship[$index][] = $coordonate_X_start . $coordonate_Y_start;
+                $coordonate_X_start++;
+            }
+            $index++;   
+        }
+        else if($coordonate_X_start==$coordonate_X_end && $coordonate_Y_start<=$coordonate_Y_end){
+            while ($coordonate_Y_start<=$coordonate_Y_end){
+                    $board1[$coordonate_Y_start][$coordonate_X_start]="0";
+                    $player_ship[$index][] = $coordonate_X_start . $coordonate_Y_start;
+                    $coordonate_Y_start++;
+            }
+            $index++;
+        }
+        display_board($board1,$board2);
+    }
+}
+
+//AI
+
+function ai_placement_ship(&$board1,&$board2, &$ai_ship){
+    $list_boat_AI=[2,3,4,5,6];
+    $is_right=false;  
+    while(!$is_right){
+        if(count($list_boat_AI) == 0){
+            break;
+        }
+        $coordonate_Y_start=mt_rand(0,9);
+        $coordonate_X_start=mt_rand(0,9);
+        if (mt_rand(0,1)<1){
+            $coordonate_Y_end=mt_rand(0,9);
+            $coordonate_X_end=$coordonate_X_start;
+            while ($coordonate_Y_end){
+            $coordonate_Y_end=mt_rand(0,9);
+            }
+            
+        }
+        else{
+            $coordonate_X_end=mt_rand(0,9);
+            $coordonate_Y_end=$coordonate_Y_start;
+            while ($coordonate_X_end==$coordonate_X_start){
+            $coordonate_X_end=mt_rand(0,9);
+            }
+            
+        }
+        
+        echo $coordonate_X_start . "-" . $coordonate_Y_start . "      " . $coordonate_X_end . "-" . $coordonate_Y_end . "\n";
+        
+        if($coordonate_X_start!=$coordonate_X_end && $coordonate_Y_start!=$coordonate_Y_end){
+            print "Pas de bateau en diagonale \n";   
+            continue;
+        }
+        lenght_boat($coordonate_Y_start,$coordonate_X_start,$coordonate_Y_end,$coordonate_X_end,$list_boat_AI);
+        if ($coordonate_X_start<=$coordonate_X_end && $coordonate_Y_start==$coordonate_Y_end){
+            while ($coordonate_X_start<=$coordonate_X_end){
+                $board2[$coordonate_Y_start][$coordonate_X_start]="0";
+                $ai_ship[$index][] = $coordonate_X_start . $coordonate_Y_start;
+                $coordonate_X_start++;
+            }    
+        }
+        else if($coordonate_X_start==$coordonate_X_end && $coordonate_Y_start<=$coordonate_Y_end){
+            while ($coordonate_Y_start<=$coordonate_Y_end){
+                    $board2[$coordonate_Y_start][$coordonate_X_start]="0";
+                    $ai_ship[$index][] = $coordonate_X_start . $coordonate_Y_start;
+                    $coordonate_Y_start++;
+            }
+        }
+    }
+}
+
+function ai_placement_ship_proto(&$board1,&$board2, &$ai_ship){
+    $list_boat_AI = 5;
+    $is_right = false; 
+    $index = 0;
+    while(!$is_right){
+        if($list_boat_AI == 0){
+            break;
+        }
+        $coordonate_Y=mt_rand(0,9);
+        $coordonate_X=mt_rand(0,9);
+        
+        if($board2[$coordonate_X][$coordonate_Y] != "0"){
+            $board2[$coordonate_X][$coordonate_Y] = "0";
+            $ai_ship[$index][] = $coordonate_X . $coordonate_Y;
+            $list_boat_AI--;
+        }
+        $index++;
+    }
+}
+
+function ships_insight(&$bundle_ship, $x, $y){
+    foreach ($bundle_ship as $key => $value) {
+        $count = 0;
+        $just_crashed = false;
+        foreach ($value as $value2) {
+            if($value2[0] == $x && $value2[1]){
+                $bundle_ship[$key] = "KO";
+                $just_crashed = true;
+            }
+            else if ($value2 != "KO"){
+                $count++;
+            } 
+        }
+        if($just_crashed){
+            echo "Coulé!";
+        }
+    }
+}
+
+function player_fire(&$board, &$ai_ship){
+    $is_right = false;
+    while(!$is_right){
+        echo "Please choose where you wanna fire(Ex A1): ";
+        $position = trim(fgets(STDIN));
+        $x = CONVERTER_LETTER[$position[0]];
+        $y = CONVERTER_NUMBER[$position[1]];
+
+        if($board[$x][$y] != "X"){
+            if($board[$x][$y] == "0"){
+                $board[$x][$y] = "@";
+                echo "Touché!";
+                $is_right = true;
+                ships_insight($ai_ship, $x, $y);
+                return;
+            }
+            $board[$x][$y] = "X";
+            $is_right = true;
+        }
+    }
+}
+
+function computer_fire(&$board, &$player_ship){
+    $is_right = false;
+    while(!$is_right){
+        $x = mt_rand(0, 9);
+        $y = mt_rand(0, 9);
+
+        // test is the cell is one the computer already fired on 
+        if($board[$x][$y] != "X"){
+            if($board[$x][$y] == "0"){
+                $board[$x][$y] = "@";
+                $is_right = true;
+                echo "Touché";
+                ships_insight($player_ship, $x, $y);
+                return;
+            }
+            $board[$x][$y] = "X";
+            $is_right = true;
+        }
+    }
+}
+
+function check_scoring($bundle_ship){
+    $ships = count($bundle_ship);
+    foreach ($bundle_ship as $value) {
+        $count = 0;
+        foreach ($value as $value2) {
+            if($value2 != "KO"){
+                $count++;
+            }
+        }
+        if($count == 0){
+            $ships--;
+        }
+    }
+    return $ships;
+}
+
+function is_winned($ai_ship, $player_ship){
+    if (check_scoring($ai_ship) == 0){
+        echo "Player won!\n";
+        return true;
+    }
+    else if (check_scoring($player_ship) == 0){
+        echo "AI won!\n";
+        return true;
+    }
+}
+
+//------------------------
+
+$wanna_play = true;
+while($wanna_play){
+
+    // initialisation of the board
+    $board1 = [];
+    $board2 = [];
+    for($i = 0; $i <= 9; $i++){
+        for($j = 0; $j <= 9 ; $j++){
+            $board1[$i][$j] = "~";
+            $board2[$i][$j] = "~";
+        }
+    }
+
+    // These arrays are needed for keeping record of ships's state
+    $player_ship = [];
+    $ai_ship = [];
+
+    place_ship($board1,$board2, $player_ship);
+    ai_placement_ship_proto($board1,$board2, $ai_ship);
+    //ai_placement_ship($board1,$board2, $ai_ship);
+
+    // game
+    while(true) {
+        // afficher les stats
+        player_fire($board2, $ai_ship);
+        if(is_winned($ai_ship, $player_ship)){
+            break;
+        }
+        display_board($board1,$board2);
+        computer_fire($board1, $player_ship);
+        if(is_winned($ai_ship, $player_ship)){
+            break;
+        }
+        display_board($board1,$board2);
+    }
+    // replay
+    echo "Wanna replay? (y/n)\n";
+    if(trim(fgets(STDIN)) != "y"){
+        $wanna_play = false;
+        echo "Byeeeeeeeeeeee\n";
+        continue;
+    }
+}
