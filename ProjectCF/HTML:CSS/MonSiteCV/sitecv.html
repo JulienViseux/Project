@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Site CV Julien VISEUX</title>
+</head>
+<body>
+    <!-- Div pour placer l'image en fond -->
+    <div id="background"></div>
+    <!-- Placement du contenue dans une div pour impression de papier -->
+<div id="page">
+    <header>
+        <nav>
+            <!-- Placement du nom et de l'image "J" en haut à gauche -->
+            <div class="col-small" id="name">
+                   
+                <img id="j" src=j.png height="30" width="30">
+                            
+                &nbsp;
+                <p id='firstname'>Julien </p>
+                &nbsp;
+              Viseux
+            </div>
+            <!-- Placement des boutons accueil et contact en haut à droite -->
+            <div class="col-large">
+                <p>
+                <b>
+                    <a id="buttonacc" href="sitecv.html">Accueil</a>
+                </b>
+                </p>
+                <p>
+                    <a id="buttonacc" href="Contact.html">Contact</a>
+                </p>
+            </div>
+        </nav>
+    </header>
+    <!-- Création du header avec image, coordonnées, titre, téléchargement CV-->
+    <div id="headdiv">
+        <div>
+            <img id="moi" src=moi.png eight=400 width="400">
+           
+        </div>
+        <div id="descright">
+            <div>
+            </br>
+                <h1 id='titre'>
+                    Développeur Full Stack
+                </h1>
+                <ul>
+                    <li> <img src=birth.png height="30" width="30"> &nbsp; 20/07/2001 - 18 ans</li>
+                 
+                    <li><img src=mail.png height="30" width="30"> &nbsp; julienemail@edu.itescia.fr</li>
+           
+                    <li><img src=phone.png height="30" width="30"> &nbsp; 06.06.06.06.06</li>
+                  
+                    <li><img src=house.png height="30" width="30">  &nbsp;07 av. Porte de Champerret PARIS</li>
+                     
+                </ul>
+                <div id="dl">
+                    <p>
+                  <b>
+                    <a id="dlcv" href="cvjulien.pdf">Télécharger le CV</a>
+                </b>
+                    </p>  
+                </div>
+            </br>
+            </div>
+            
+        
+        </div>
+    </div>
+ <!-- Titre divisé par un span pour souligner en deux couleurs -->
+    <div id="mon-id">
+        <h2 class="title">
+            Forma<span>tion</span>
+        </h2>
+     
+    </br>
+    <!-- Création des 4 divs pour la formation -->
+     <div id='Form'>
+         <div>
+            <div>
+                <h5>2019-2021</h5>
+                <p>Coding Factory by Itescia CCI PARIS</p>
+                <h3>Codeur Informatique en temps plein</h3></br>
+            </div>
+            <div>
+                <h5>2016-2019</h5>
+                <p>Lycée Jean Jaures ARGENTEUIL</p>
+                <h3>Baccalauréat Scientifique spé. ISN</h3></br>
+           </div>
+         </div>
+         <!-- Création des images pour diviser les 2 divs de "Formation" -->
+         <div id='imgschool'>
+             <img src=line.png width="50" height="150">
+             <img src=school.png width="50" height="50">
+             
+             <img src=line.png width="50" height="150">
+         </div>
+         <div>
+            <div>
+                <h5>2012-2016</h5>
+                <p>Conservatoire ARGENTEUIL</p>
+                <h3>Diplôme du premier cycle de musique</h3></br>
+            </div>
+            <div> 
+                <h5>2012-2016</h5>
+                <p>Collège Albert Camus ARGENTEUIL</p>
+                <h3>Diplôme National du Brevet</h3></br> 
+           </div>
+             
+        </div>
+     </div>
+        
+    </div>
+    <div>
+        <h2 class="title">
+            Pro<span>jets</span>
+        </h2>
+        <!-- Création des divs pour les projets -->
+        <div id='projet'>
+        
+            
+            <div class='pro'>
+                    <img class="imgpro" src="p1.png">
+                    <img class="imgproback" src="JAVA.png">
+               
+                <p>
+                    Application de filtres sur une image au choix,</br> intensité réglable, trois filtres disponibles.
+
+                </p>
+                <h5>
+                 -JAVA
+                </h5>
+            
+            </div>
+              
+            <div class='pro'>
+                   <img class="imgproback" src="JAVA.png">
+                    <img class="imgpro" src="p3.png">
+                   
+               <p>
+                    RPG en ligne de commande, création de différents </br> types de personnages, lancement de combat.    
+               </p>
+               <h5>
+                -JAVA POO
+               </h5> 
+     
+            </div>     
+       
+            <div class='pro'>
+                    <img class="imgproback" src="PHP.png">
+                    <img class="imgpro" src="p2.png">
+            
+               <p>
+                   Bataille navale avec une interface en ligne de commande,</br> jouable contre IA en tour par tour sur une grille.
+               </p>
+               <h5>
+                -PHP
+               </h5>  
+            
+              
+        </div>
+
+            <div class='pro'>
+                    <img class="imgproback" src="Python.png">
+                    <img class="imgpro" src="p1.png" >
+               
+                <p>
+                    Pong jouable à un ou deux joueurs sur le même clavier,</br> choix des couleurs pour les raquettes.
+                </p>
+                <h5>
+                -Python
+                </h5> 
+             
+            </div> 
+ 
+     
+    </div>
+</br>
+<!-- div pour les boutons "left" et "right" en dessous de projet -->
+        <div id='bcomp'>
+            <button>
+                    &#8592;
+            </button>
+            &nbsp;
+            <button>
+                    &#8594;
+            </button>
+        </div>
+    </div>
+    <div>
+        <div>
+<!-- Créations des divs avec image et titre pour chaque compétence -->
+             <h2 class="title">
+            Compé<span>tences</span>
+             </h2>
+            </br>
+            <!-- Tentative Caroussel mais nique -->
+        <figure >
+            <div id="comp">
+                 <div class="lang " >
+                      <img src=html.png width="100" height="100" alt>
+                      
+                      <h3>HTML</h3>
+                 </div>
+                 <div class="lang ">
+                    <img src=CSS.png width="100" height="100" alt>
+           
+                    <h3>CSS</h3>
+               </div>
+                 <div class="lang ">
+                      <img src=php.png width="100" height="100" alt>  
+                    
+                      <h3>PHP</h3>
+                 </div>
+                 <div class="lang ">
+                      <img src=java.png width="100" height="100" alt>  
+            
+                      <h3>Java</h3>     
+                 </div>
+                 <div class="lang ">
+                      <img src=python.png width="100" height="100" alt>
+                     
+                      <h3>Python</h3>
+                 </div>
+                 <div class="lang ">
+                       <img src=sql.png width="100" height="100" alt>
+    
+                       <h3>SQL</h3>
+                 </div>
+                 <div class="lang ">
+                       <img src=git.png width="100" height="100" alt>
+
+                       <h3>Git</h3>
+                 </div>
+            </div>
+        </figure>
+        </div>
+    </div>   
+</br>
+<!-- div pour les boutons "left" et "right" en dessous de compétence -->
+        <div id='bcomp'>
+            <button id='CNext'>
+                    &#8592;
+            </button>
+                    &nbsp;
+            <button id='CPrev'>
+                    &#8594;
+            </button>
+        </div> 
+    <div>
+<!-- Div pour les centres d'interet avec image, titre et p(pour lister 2 éléments) -->
+        <h2 class="title">
+            Centres<span>d'intérêt</span>
+        </h2>
+          <div id='interet'>
+            <div class='ilike'>
+                <img src="game.png" width="40">
+               
+                <h2 >Jeux</h2>
+                <p class='txt'>FPS</p>
+                <p class='txt'>Hack'n'Slash</p>
+            </div>
+            <div class="ilike">
+                <img src="music.png" width="40" >
+             
+                <h2>Musique</h2>
+                <p class='txt'>Rock </p>
+                <p class='txt'>Punk</p> 
+            </div>
+            <div class="ilike">
+                <img src="movie.png" width="40" >
+               
+                <h2>Cinéma</h2>
+                <p class='txt'>Horreur</p>
+                <p class='txt'>Western</p>                
+            </div>
+            <div class="ilike">
+                <img src="swim.png" width="40" >
+  
+                <h2>Natation</h2>
+                <p class='txt'>En club </p>
+                <p class='txt'>Epreuve bac</p>              
+            </div>
+          </div>
+       
+
+    </div>
+</br>
+
+    <footer>
+        <!-- Footer avec liens sous forme de texte -->
+        <div id="link">
+            <div id="social">
+      
+           <a id="linkedin" href=https://www.linkedin.com/in/julien-viseux/>
+              <h6>LinkedIn</h6>
+           </a>
+           &nbsp;&nbsp;&nbsp;
+           <a id="git" href=https://github.com/JulienViseux/>
+              <h6>Github</h6>
+           </a>
+        </div>
+
+      
+    
+        <div id="copyright">
+          <h6>
+              © 2020 Tous droits réservés
+          </h6>        
+        </div>
+    </div>
+    </footer>
+</body>
+</html>

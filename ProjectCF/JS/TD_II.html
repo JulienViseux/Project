@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulaire</title>
+</head>
+<body>
+    <form onsubmit="return false">
+        <input id="number" name="number" placeholder="Votre nombre..."value="">
+        <input type="submit" onclick="test(this.form)">
+        <!-- <button onclick="NextGame(true)">Recommencer></button> -->
+        <button><a href="TD_II.html">Recommencer</a></button>
+
+        <p class="result"></p>
+    </form>
+ <script>
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+var i=0;
+var rslt = getRandomInt(100);
+console.log(rslt);
+function test(){
+var selection = document.getElementById("number").value;
+if(selection<rslt){
+    i++
+    document.getElementsByClassName("result")[0].innerHTML="Le nombre à trouvé est plus grand, vous êtes à "+ i + " tentatives.";
+}
+else if(selection>rslt){
+    i++
+    document.getElementsByClassName("result")[0].innerHTML="Le nombre à trouvé est plus petit, vous êtes à "+ i + " tentatives.";
+
+}
+if (rslt==selection){
+    i++
+    document.getElementsByClassName("result")[0].innerHTML="Vous avez gagné! Vous avez trouvé en " + i + " tentatives.";
+}
+}
+/*
+var histo=[];
+function NextGame(lost){
+    if(lost){
+        document.getElementsByClassName("result")[0].innerHTML="Vous avez perdu!"
+        histo.unshift(-1);
+        if (histo.length>5){
+              histo.pop();
+        }
+    }
+    else{
+        histo.unshift(i);
+        if (histo.length>5){
+            histo.pop();
+        }
+    }
+}
+console.log(histo);*/
+
+
+    </script>
+</body>
+
+</html>

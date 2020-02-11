@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pierre, Feuille, Ciseaux</title>
+</head>
+
+<body>
+    <p>Votre nom:</p>
+    <form onsubmit="return false">
+        <input type="text" id="nom" placeholder="Votre nom...">
+        <button type="submit" onclick="getName()"></button>
+    </form>
+    <input type="button" value="Reset" onclick="reset()">
+    <form onsubmit="return false">
+        <span id="minuteur">3</span>
+        <input type="text" value="3" id="chrono" placeholder="temps en seconde...">
+        <button type="submit" onclick="Chrono()"></button>
+        <input id="value" value="Pierre" type="submit" onclick="Pierre()">
+        <input id="value" value="Feuille" type="submit" onclick="Feuille()">
+        <input id="value" value="Ciseaux" type="submit" onclick="Ciseaux()">
+        <p id="chrono"></p>
+        <p class="result"></p>
+        <p class="Victory"></p>
+        <p class="turn"></p>
+        <p>Score:</p>
+        <p class="ScoreIA"></p>
+        <p class="ScorePlayer"></p>
+    </form>
+    <script>
+        var gameHistory = [];
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        var i = 0;
+        var nbr = getRandomInt(3);
+        var name;
+
+        function getName() {
+            name = document.getElementById('nom').value;
+        }
+        function PFC() {
+            if (nbr == 0 && IA != "pierre") {
+                document.getElementsByClassName("result")[0].innerHTML = "Pierre";
+                IA = 'pierre';
+                return IA;
+
+            }
+            else if (nbr == 1 && IA != "feuille") {
+                document.getElementsByClassName("result")[0].innerHTML = "Feuille";
+                IA = 'feuille';
+                return IA;
+            }
+            else if (nbr == 2 && IA != "ciseaux") {
+                document.getElementsByClassName("result")[0].innerHTML = "Ciseaux";
+                IA = 'ciseaux';
+                return IA;
+            }
+            else {
+                nbr = getRandomInt(3)
+                return PFC(nbr);
+            }
+        }
+        var ScorePlayer = 0;
+        var ScoreIA = 0;
+        var IA = PFC();
+        console.log(IA);
+        function Pierre() {
+            resetChrono();
+            stopChrono();
+            setChrono();
+            if (IA == 'pierre' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Egalité";
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+
+            }
+            else if (IA == 'feuille' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Perdu";
+                ScoreIA++;
+                document.getElementsByClassName("ScoreIA")[0].innerHTML = "IA: " + ScoreIA;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else if (IA == 'ciseaux' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Gagné";
+                ScorePlayer++;
+                document.getElementsByClassName("ScorePlayer")[0].innerHTML = name + ":" + ScorePlayer;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+        }
+        function Feuille() {
+            resetChrono();
+            stopChrono();
+            setChrono();
+            if (IA == 'pierre' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Gagné";
+                ScorePlayer++;
+                document.getElementsByClassName("ScorePlayer")[0].innerHTML = name + ":" + ScorePlayer;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else if (IA == 'feuille' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Egalité";
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else if (IA == 'ciseaux' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Perdu";
+                ScoreIA++;
+                document.getElementsByClassName("ScoreIA")[0].innerHTML = "IA: " + ScoreIA;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+        }
+        function Ciseaux() {
+            resetChrono();
+            stopChrono();
+            setChrono();
+            if (IA == 'pierre' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Perdu";
+                ScoreIA++;
+                document.getElementsByClassName("ScoreIA")[0].innerHTML = "IA: " + ScoreIA;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else if (IA == 'feuille' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Gagné";
+                ScorePlayer++;
+                document.getElementsByClassName("ScorePlayer")[0].innerHTML = name + ":" + ScorePlayer;
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else if (IA == 'ciseaux' && i != 42) {
+                document.getElementsByClassName("Victory")[0].innerHTML = "Egalité";
+                nbr = getRandomInt(3);
+                IA = PFC();
+                i++;
+                document.getElementsByClassName("turn")[0].innerHTML = "Tours:" + i;
+            }
+            else {
+                return document.getElementsByClassName("Victory")[0].innerHTML = "L'IA a gagné";
+            }
+        }
+        function reset() {
+            if (gameHistory.length == 0) {
+                gameHistory.push([name, i]);
+            }
+            else if(gameHistory.length==5){
+                for (array in gameHistory){
+                    if (i > array[1]) {
+                        array.pop;
+                        gameHistory.push([name, i]);
+                    }
+                }
+
+            }
+            else{
+                gameHistory.push([name,i]);
+            }
+            document.getElementsByClassName("turn")[0].innerHTML = "";
+            document.getElementsByClassName("Victory")[0].innerHTML = "Perdu !";
+            document.getElementsByClassName("ScorePlayer")[0].innerHTML = "";
+            document.getElementsByClassName("ScoreIA")[0].innerHTML = "";
+            nbr = 0;
+            IA = 0;
+            i = 0;
+            nbr = getRandomInt(3);
+            PFC();
+            console.log(gameHistory);
+
+        }
+var temps;
+function setChrono() {
+    temps = setTimeout(function() {
+        Chrono();
+    }, 1000);
+};
+function Chrono() {
+    /* On récupère la valeur de la div chrono (20) */
+    var minuteur = document.getElementById('minuteur').innerHTML;
+    var secondes = document.getElementById('chrono').value;
+    console.log(secondes);
+    //alert(secondes);
+    /* Si elle est plus grande que 0 on la décrémente
+     * et on rappelle la fonction */
+    if (secondes > 0) {
+        secondes--;
+        minuteur--;
+        document.getElementById("chrono").value = secondes;
+        document.getElementById("minuteur").innerHTML = minuteur;
+        setChrono();
+        //alert(document.getElementById("chrono").innerHTML = secondes);
+        //alert("ok = " + ok);
+    } else {
+        document.getElementById("chrono").innerHTML = "Ça y est c'est fini gros, t'as perdu " + "<br />";
+        reset();
+        stopChrono();
+        resetChrono();
+        
+    }
+}
+function stopChrono() {
+    clearTimeout(temps);
+}
+
+function resetChrono() {
+    document.getElementById("chrono").value = 3;
+    document.getElementById("minuteur").innerHTML = 3;
+}
+    </script>
+    <footer>
+        <p id="copyright">Pierre, Feuille, Ciseaux by Anis, Julien & Théo</p>
+    </footer>
+</body>
+
+</html>

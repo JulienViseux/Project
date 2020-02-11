@@ -1,0 +1,409 @@
+/* création effet 'page' */
+#page{
+    position: relative;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px 5px lightgray;
+    padding:-5%;
+    margin: 5%;
+    background-color:white;
+    overflow: hidden;
+    z-index: 10;
+}
+/* Ajout du fond gradient sur le 'J' en haut à gauche */
+#j{
+    margin: 10px;
+    border-radius: 50%;
+    background:linear-gradient(Cornflowerblue,BlueViolet);
+}
+/* Ajout du 'background.png */
+#background{
+    background-size: cover;
+    background-image: url("background.png");
+    background-color:white;
+    position :fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+/* Bouton en haut à droite permettant nav entre accueil et contact */
+#buttonacc{
+    font-family :Arial, Helvetica, sans-serif;
+    color: rgb(24,24,24);
+    margin: 15px;
+    text-decoration: none;
+}
+/* Bouton téléchargement CV */
+#dlcv{
+    padding: 15px;
+    border-width:3px;
+    border-style: solid;
+    border-radius: 10%;
+    border-color: darkgray;   
+    box-shadow: 5px 5px 5px 5px lightgray;
+    font-style: bold;
+    font-family :Arial, Helvetica, sans-serif;
+    color: rgb(24,24,24);
+    margin: 15px;
+    text-decoration: none;
+}
+/* Couleur header (coordonnées/image) */
+#headdiv{
+    padding: 30px;
+    background-color:whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+/* Nom/Bouton et la barre nav (en haut) */
+nav {
+    display: flex;
+    flex-direction: row;
+}
+nav .col-small {
+    flex-basis: 25%;
+}
+nav .col-large {
+    display: flex;
+    flex-basis: 75%;
+    text-align: right;
+    justify-content: flex-end;
+    padding-top: 5px;
+}
+/* Mise en couleur du footer en bas */
+footer{
+    object-fit: initial;
+    border-top: 5px solid lightgray; 
+    background-color: whitesmoke;
+    
+}
+/* placement de la liste (coordonnées) */
+#descright{
+    display: flex;
+    justify-content: center;
+}
+/* placement du bouton de téléchargement */
+#descright button{
+    margin:0;
+    padding: 0;
+}
+/* Alignement des deux liens du footer  */
+#link{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    margin: 10px 10px 0 10px;
+}
+/* Alignement des liens et du copyright */
+#social{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+/* mise en couleur du lien linkedin */
+#linkedin{
+    font-family :Arial, Helvetica, sans-serif;
+    color: rgb(24,24,24);
+    margin: 15px;
+    text-decoration: none;
+}
+/* mise en couleur du lien github */
+#git{
+    font-family :Arial, Helvetica, sans-serif;
+    color: rgb(24,24,24);
+    margin: 15px;
+    text-decoration: none;
+}
+/* Alignement du copyright  */
+#copyright{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+/* Alignement du bouton dl cv par rapport à la liste */
+#dl{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-size: 15px;
+}
+ /* mise en forme de la photo */
+#moi{
+    object-fit: initial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 10px solid white;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px lightgray;
+    /* filter: grayscale(100%);*/
+    
+}
+/* Effet sur tout les titres du CV */
+.title{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start ;
+    font-family :Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    color: rgb(66,66,66);
+    text-decoration: underline;
+    text-decoration-color: rgb(192, 67, 192);
+    text-shadow: 2px 2px 10px lightgray;
+    padding: 15px;
+}
+/* Span pour faire en sorte de souligner avec deux couleurs */
+.title span{
+    text-decoration: underline;
+    text-decoration-color: rgb(43, 32, 141);  
+}
+
+/* mise en forme de la liste (coordonnées) */
+li {
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+    font-size: 120%;
+    color: black;
+    list-style-type: none;
+    padding-left: 15px;
+    text-shadow: 2px 2px 10px lightgray;
+    padding: 0;
+    margin: 0;
+    line-height:300%
+} 
+   /* mise en couleur du nom/prénom en haut à gaiche  */
+#name{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start ;
+    font-size: 20px;
+    font-family :Arial, Helvetica, sans-serif;
+    color: rgb(66,66,66);
+    text-shadow: 2px 2px 10px lightgray;
+
+}
+/* mise en couleur du titre 'Dév Full Stack' */
+#titre{
+    font-family :Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    color: rgb(66,66,66);
+    text-shadow: 2px 2px 10px lightgray;
+}
+/* mise en place des div de formation et diplome */
+.dip{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 100%;
+    list-style-type: none;
+    padding-left: 15px;
+    text-shadow: 2px 2px 10px lightgray;
+    line-height:200%
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+    font-size: 110%;
+    list-style-type: none;
+    padding-left: 15px;
+    text-shadow: 2px 2px 10px lightgray;
+    line-height:200%
+}
+#Form{
+    display: flex;
+    align-items: center;
+    justify-content: space-around ;
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+    font-size: 110%;
+    color: black;
+    list-style-type: none;
+    padding-left: 15px;
+    text-shadow: 2px 2px 10px lightgray;
+    line-height:100%
+}
+/* 3 images aligner en colonne au milieu des diplomes */
+#imgschool{
+    display: flex;
+    flex-direction: column;
+}
+/* Mise en place de la partie compétence */
+#comp{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly ;
+    flex-direction :row;
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+    font-size: 100%;
+}
+/* Mise en forme des images des compétence avec alignement */
+.lang{
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+/* bouton gauche/droite de compétence */
+#bcomp{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+}
+/* Gras appliqué sur le prénom en haut à gauche */
+#firstname{
+    font-weight: bold;
+}
+/* mise en forme des centres d'interet */
+#interet{
+    display: flex;
+    align-items: center;
+    justify-content: space-around ;
+    flex-direction :row;
+}
+/* mise en forme des p dans les div pour les centre d'interet */
+.txt{
+    font-weight: normal;
+    color: darkgrey; 
+    font-size: 90%;
+    font-weight:  bold;
+
+}
+/* mise en forme des divs pour les centres d'interet */
+.ilike{
+    padding: 6%;
+    margin: 3%;
+    font-weight: bold;
+    border-width:3px;
+    border-style: dashed;
+    border-radius: 10%;
+    border-color:darkgray;   
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    flex-direction :column;
+    font-family: Arial, sans-serif;
+    font-size: 70%;
+}
+/* Mise en forme de l'onglet projet */
+#projet{
+    display: flex;
+    align-items: center;
+    flex-direction :row;
+ 
+
+}
+/* mise en forme des divs dans l'onglet projet */
+.pro{
+    position: relative;
+    padding:2%;
+    margin: 2%;
+    border-width:3px;
+    border-style: dashed;
+    border-color:darkgray;
+    border-radius: 10%;
+    color: rgb(66,66,66);
+    font-family: Arial, sans-serif;
+}
+/* mise en place des images en haut à gauche des divs projet */
+.imgpro{
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    width: 70px;
+    height: 70px;
+    object-fit: initial;
+    border: 1px solid black;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px lightgray; 
+}
+/* mise en place des images en fond dans les divs projets */
+.imgproback{
+    opacity: 0.05;
+    position: absolute;
+    bottom: 10px;
+    left: 120px;
+    width: 150px;
+    height: 150px;
+
+}
+/* Mise en place de la div pour le message dans le formulaire */
+.titrechamp{
+    font-size: 120%;
+    font-style: normal;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+   /*  mise en place du msg 'votre message:' */
+#msg {
+    vertical-align: top;
+    height: 5em;
+}
+/* mise en forme du formulaire */
+form {
+    background-color: rgb(59,59,59);
+    margin: 0 auto;
+    width: 400px;
+    padding: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+}
+  /* mise en forme de "votre nom" et "votre mail" dans le formualire */
+label {
+    font-family: Courier, monospace;
+    font-weight: bold;
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+}
+/* mise en forme des box pour entre le nom, mail, message */
+input, textarea {
+    font-family: Courier, monospace;
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid darkgrey;
+}
+/* mise en forme du bouton pour envoyer le message (fictif) */
+#bsend{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width:3px;
+    border-style: solid;
+    border-radius: 20%;
+    border-color: grey;   
+    font-style: bold;
+    font-family: Courier, monospace;
+    color: rgba(24,24,24);
+    padding: 10px;
+    margin:50px;
+    text-decoration: none;
+}
+/* Ajout d'une div derrière le formulaire pour donner un effet de couleur */
+#backgroundf
+{
+    background:linear-gradient(to bottom right,cyan,blue,purple,magenta,pink);
+    border-width:3px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10%;
+    padding: 2%;
+    margin-top: 2%;
+    margin-left: 31%;
+    margin-right: 31%;
+    margin-bottom: 2%;
+}
+
+  
+
